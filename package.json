@@ -102,6 +102,11 @@
       "minimum": 0,
       "description": "The number of extra lines of context to show after the match for project results"
     },
+    "showCloseButton": {
+      "type": "boolean",
+      "default": true,
+      "title": "Show Close Button"
+    },
     "showSearchWrapIcon": {
       "type": "boolean",
       "default": true,
