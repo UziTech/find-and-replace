@@ -141,6 +141,12 @@
       "default": false,
       "title": "Autocomplete Search",
       "description": "Autocompletes entries in the find search field."
+    },
+    "findReplacePrevButton": {
+      "type": "boolean",
+      "default": false,
+      "title": "Find/Replace Previous Buttons",
+      "description": "Show find previous and replace previous buttons."
     }
   }
 }
