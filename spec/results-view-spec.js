@@ -518,7 +518,7 @@ describe('ResultsView', () => {
       });
 
       it("does not create a split when the option is 'none'", async () => {
-        atom.config.set('find-and-replace.projectSearchResultsPaneSplitDirection', 'none');
+        atom.config.set('temp-find-and-replace.projectSearchResultsPaneSplitDirection', 'none');
         atom.commands.dispatch(resultsView.element, 'core:move-down');
         atom.commands.dispatch(resultsView.element, 'core:confirm');
         await paneItemOpening()
@@ -526,7 +526,7 @@ describe('ResultsView', () => {
       });
 
       it("always opens the file in the left pane when the option is 'right'", async () => {
-        atom.config.set('find-and-replace.projectSearchResultsPaneSplitDirection', 'right');
+        atom.config.set('temp-find-and-replace.projectSearchResultsPaneSplitDirection', 'right');
         atom.commands.dispatch(resultsView.element, 'core:move-down');
         atom.commands.dispatch(resultsView.element, 'core:confirm');
         await paneItemOpening()
@@ -534,7 +534,7 @@ describe('ResultsView', () => {
       });
 
       it("always opens the file in the pane above when the options is 'down'", async () => {
-        atom.config.set('find-and-replace.projectSearchResultsPaneSplitDirection', 'down')
+        atom.config.set('temp-find-and-replace.projectSearchResultsPaneSplitDirection', 'down')
         atom.commands.dispatch(resultsView.element, 'core:move-down');
         atom.commands.dispatch(resultsView.element, 'core:confirm');
         await paneItemOpening()
@@ -854,10 +854,10 @@ describe('ResultsView', () => {
 
   describe('search result context lines', () => {
     beforeEach(async () => {
-      atom.config.set('find-and-replace.searchContextLineCountBefore', 4);
-      atom.config.set('find-and-replace.searchContextLineCountAfter', 3);
-      atom.config.set('find-and-replace.leadingContextLineCount', 0);
-      atom.config.set('find-and-replace.trailingContextLineCount', 0);
+      atom.config.set('temp-find-and-replace.searchContextLineCountBefore', 4);
+      atom.config.set('temp-find-and-replace.searchContextLineCountAfter', 3);
+      atom.config.set('temp-find-and-replace.leadingContextLineCount', 0);
+      atom.config.set('temp-find-and-replace.trailingContextLineCount', 0);
 
       projectFindView.findEditor.setText('items.');
       atom.commands.dispatch(projectFindView.element, 'core:confirm');

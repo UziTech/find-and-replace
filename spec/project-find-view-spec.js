@@ -37,7 +37,7 @@ describe(`ProjectFindView (ripgrep=${ripgrep})`, () => {
   }
 
   beforeEach(() => {
-    atom.config.set('find-and-replace.useRipgrep', ripgrep)
+    atom.config.set('temp-find-and-replace.useRipgrep', ripgrep)
     workspaceElement = atom.views.getView(atom.workspace);
     atom.config.set('core.excludeVcsIgnoredPaths', false);
     atom.project.setPaths([path.join(__dirname,   'fixtures')]);
@@ -119,9 +119,9 @@ describe(`ProjectFindView (ripgrep=${ripgrep})`, () => {
     });
 
     it("honors config settings for find options", async () => {
-      atom.config.set('find-and-replace.useRegex', true);
-      atom.config.set('find-and-replace.caseSensitive', true);
-      atom.config.set('find-and-replace.wholeWord', true);
+      atom.config.set('temp-find-and-replace.useRegex', true);
+      atom.config.set('temp-find-and-replace.caseSensitive', true);
+      atom.config.set('temp-find-and-replace.wholeWord', true);
 
       atom.commands.dispatch(workspaceElement, 'project-find:show');
       await activationPromise;
@@ -352,7 +352,7 @@ describe(`ProjectFindView (ripgrep=${ripgrep})`, () => {
 
     describe("when close option is true", () => {
       beforeEach(() => {
-        atom.config.set('find-and-replace.closeFindPanelAfterSearch', true);
+        atom.config.set('temp-find-and-replace.closeFindPanelAfterSearch', true);
       })
 
       it("closes the panel after search", async () => {
@@ -403,7 +403,7 @@ describe(`ProjectFindView (ripgrep=${ripgrep})`, () => {
 
       it("splits when option is right", async () => {
         const initialPane = atom.workspace.getCenter().getActivePane();
-        atom.config.set('find-and-replace.projectSearchResultsPaneSplitDirection', 'right');
+        atom.config.set('temp-find-and-replace.projectSearchResultsPaneSplitDirection', 'right');
         projectFindView.findEditor.setText('items');
 
         atom.commands.dispatch(projectFindView.element, 'core:confirm');
@@ -414,7 +414,7 @@ describe(`ProjectFindView (ripgrep=${ripgrep})`, () => {
 
       it("splits when option is bottom", async () => {
         const initialPane = atom.workspace.getCenter().getActivePane();
-        atom.config.set('find-and-replace.projectSearchResultsPaneSplitDirection', 'down');
+        atom.config.set('temp-find-and-replace.projectSearchResultsPaneSplitDirection', 'down');
         projectFindView.findEditor.setText('items');
 
         atom.commands.dispatch(projectFindView.element, 'core:confirm');
@@ -434,7 +434,7 @@ describe(`ProjectFindView (ripgrep=${ripgrep})`, () => {
       });
 
       it("can be duplicated on the right", async () => {
-        atom.config.set('find-and-replace.projectSearchResultsPaneSplitDirection', 'right');
+        atom.config.set('temp-find-and-replace.projectSearchResultsPaneSplitDirection', 'right');
         projectFindView.findEditor.setText('items');
 
         atom.commands.dispatch(projectFindView.element, 'core:confirm');
@@ -463,7 +463,7 @@ describe(`ProjectFindView (ripgrep=${ripgrep})`, () => {
       });
 
       it("can be duplicated at the bottom", async () => {
-        atom.config.set('find-and-replace.projectSearchResultsPaneSplitDirection', 'down');
+        atom.config.set('temp-find-and-replace.projectSearchResultsPaneSplitDirection', 'down');
         projectFindView.findEditor.setText('items');
 
         atom.commands.dispatch(projectFindView.element, 'core:confirm');
@@ -1568,7 +1568,7 @@ describe(`ProjectFindView (ripgrep=${ripgrep})`, () => {
   describe("panel opening", () => {
     describe("when a panel is already open on the right", () => {
       beforeEach(async () => {
-        atom.config.set('find-and-replace.projectSearchResultsPaneSplitDirection', 'right');
+        atom.config.set('temp-find-and-replace.projectSearchResultsPaneSplitDirection', 'right');
 
         editor = await atom.workspace.open('project/sample.js');
         editorElement = atom.views.getView(editor);
@@ -1594,7 +1594,7 @@ describe(`ProjectFindView (ripgrep=${ripgrep})`, () => {
 
     describe("when a panel is already open at the bottom", () => {
       beforeEach(async () => {
-        atom.config.set('find-and-replace.projectSearchResultsPaneSplitDirection', 'down');
+        atom.config.set('temp-find-and-replace.projectSearchResultsPaneSplitDirection', 'down');
 
         editor = await atom.workspace.open('project/sample.js');
         editorElement = atom.views.getView(editor);
@@ -1625,7 +1625,7 @@ describe(`ProjectFindView (ripgrep=${ripgrep})`, () => {
     });
 
     it("uses the regexp grammar when regex-mode is loaded from configuration", async () => {
-      atom.config.set('find-and-replace.useRegex', true);
+      atom.config.set('temp-find-and-replace.useRegex', true);
 
       atom.commands.dispatch(workspaceElement, 'project-find:show');
       await activationPromise;

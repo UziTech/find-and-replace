@@ -16,9 +16,9 @@ metricsReporter = new ReporterProxy()
 module.exports =
   activate: ({findOptions, findHistory, replaceHistory, pathsHistory}={}) ->
     # Convert old config setting for backward compatibility.
-    if atom.config.get('find-and-replace.openProjectFindResultsInRightPane')
-      atom.config.set('find-and-replace.projectSearchResultsPaneSplitDirection', 'right')
-    atom.config.unset('find-and-replace.openProjectFindResultsInRightPane')
+    if atom.config.get('temp-find-and-replace.openProjectFindResultsInRightPane')
+      atom.config.set('temp-find-and-replace.projectSearchResultsPaneSplitDirection', 'right')
+    atom.config.unset('temp-find-and-replace.openProjectFindResultsInRightPane')
 
     atom.workspace.addOpener (filePath) ->
       new ResultsPaneView() if filePath.indexOf(ResultsPaneView.URI) isnt -1
@@ -164,7 +164,7 @@ module.exports =
   consumeAutocompleteWatchEditor: (watchEditor) ->
     @autocompleteWatchEditor = watchEditor
     atom.config.observe(
-      'find-and-replace.autocompleteSearches',
+      'temp-find-and-replace.autocompleteSearches',
       (value) => @toggleAutocompletions(value))
     new Disposable =>
       @autocompleteSubscriptions?.dispose()
@@ -214,7 +214,7 @@ module.exports =
     # but most recent pane view and projectFindView do
     ResultsPaneView.projectFindView = @projectFindView
 
-    @toggleAutocompletions atom.config.get('find-and-replace.autocompleteSearches')
+    @toggleAutocompletions atom.config.get('temp-find-and-replace.autocompleteSearches')
 
   deactivate: ->
     @findPanel?.destroy()
